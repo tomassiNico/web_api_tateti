@@ -7,7 +7,14 @@
   <body>
     <ul>
       {% for p in partidas %}
-      <li>{{ p.jugador }}</li>
+      <li><a href="/partida/{{ p._id }}">Partida: {{ p.jugador }} - Fecha creacion: {{ p.add_date }} -
+          Estado: {% if p.ganador == '' %}
+                    {{ "En cuso "}}
+                  {% else %}
+                      {{ "Finalizada" }} - Ganador: {{ p.ganador }}
+                  {% endif %}
+          </a>
+      </li>
       {% endfor %}
     </ul>
   </body>
