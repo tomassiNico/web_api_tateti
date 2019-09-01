@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-  <form action="/crear_partida" method="post">
+  <form action="/crear_partida" method="POST">
     <div class="form-group">
       <label for="jugador">Tu Nombre:</label>
-      <input type="text" class="form-control" id="jugador" placeholder="Nombre del jugador...">
+      <input type="text" class="form-control" id="jugador" placeholder="Nombre del jugador..." name="jugador">
     </div>
     <div class="form-group">
       <label for="forma">Example select</label>
-      <select class="form-control" id="forma">
+      <select class="form-control" id="forma" name="forma">
         <option>X</option>
         <option>O</option>
       </select>

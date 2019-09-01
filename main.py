@@ -3,9 +3,15 @@ from flask import Flask, render_template, request, redirect
 import requests
 import ast
 from bson import ObjectId
-import datetime
+from datetime import datetime
+
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def hola():
+    return render_template('index.html', title="Bienvenido!")
 
 @app.route('/partidas')
 def get_partidas():
@@ -18,6 +24,7 @@ def get_partidas():
         p["_id"] = p["_id"]["$oid"]
     return render_template('partidas.html', title="Listado de partidas", partidas=partidas)
 
+
 @app.route('/partida/<id>')
 def get_partida(id):
     r = requests.get('https://murmuring-forest-97474.herokuapp.com/partida/{}'.format(id))
@@ -28,19 +35,23 @@ def get_partida(id):
     tab = partida["tablero"].split(",")
     return render_template('partida.html', title="Partida {}".format(partida["_id"]) , partida=partida, tablero=tab)
 
+
 @app.route('/partida/<id>/jugar/<pos>')
 def jugar(id, pos):
     r = requests.get('https://murmuring-forest-97474.herokuapp.com/partida/{}/jugar/{}'.format(id, pos))
     return redirect('/partida/{}'.format(id))
 
-@app.route('/crear_partida', methods=['GET','POST'])
+
+@app.route('/crear_partida', methods=['POST'])
 def crear_partida():
-    return "request.form['forma']"
-    #data = { }
-    #data["jugador"] = request.form['jugador']
-    #data["forma"] = request.form['forma']
-    #data["add_date"] = datetime.datetime.now()
-    #requests.post('https://murmuring-forest-97474.herokuapp.com/nueva_partida', json=data)
+    result = request.form.to_dict()
+    now = datetime.now()
+    result["add_date"] = now.strftime("%m/%d/%Y, %H:%M:%S")
+    r = requests.post(url='https://murmuring-forest-97474.herokuapp.com/nueva_partida', json=result)
+    # convierto a diccionario
+    partida = ast.literal_eval(r.text)
+    return redirect('/partida/{}'.format(partida["_id"]["$oid"]))
+
 
 @app.route('/nueva_partida', methods=['GET'])
 def nueva_partida():
