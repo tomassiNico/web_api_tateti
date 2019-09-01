@@ -1,31 +1,33 @@
 {% extends "base.html" %}
 {% block content%}
-<div class="container">
-  <h3>Id de partida: {{ partida._id }}</h3>
-  <h3>Nombre del jugador: {{ partida.jugador }}</h3>
-  <h4>Fecha de partida: {{ partida.add_date }}</h4>
-
-  <table class="table table-striped table-dark table-bordered">
+<div class="container mt-4">
+  <h5><b>Nombre del jugador:</b> {{ partida.jugador }}</h5>
+  <h5><b>Fecha de partida:</b> {{ partida.add_date }}</h5>
+  <h5><b>Forma seleccionada:</b> {{ partida.forma }}</h5>
+  <table class="table table-striped table-dark table-bordered mt-4">
   <tbody>
     <tr>
-      <td><a href="/partida/{{ partida._id }}/jugar/0"><button type="submit" class="btn btn-secondary btn-lg" >{{ tablero[0] }}</button></td></a>
-      <td><a href="/partida/{{ partida._id }}/jugar/1"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[1] }}</button></td>
-      <td><a href="/partida/{{ partida._id }}/jugar/2"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[2] }}</button></td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/0">{{ tablero[0] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/1">{{ tablero[1] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/2">{{ tablero[2] }}</td>
     </tr>
     <tr>
-      <td><a href="/partida/{{ partida._id }}/jugar/3"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[3] }}</button></td>
-      <td><a href="/partida/{{ partida._id }}/jugar/4"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[4] }}</button></td>
-      <td><a href="/partida/{{ partida._id }}/jugar/5"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[5] }}</button></td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/3">{{ tablero[3] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/4">{{ tablero[4] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/5">{{ tablero[5] }}</td>
     </tr>
     <tr>
-      <td><a href="/partida/{{ partida._id }}/jugar/6"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[6] }}</button></td>
-      <td><a href="/partida/{{ partida._id }}/jugar/7"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[7] }}</button></td>
-      <td><a href="/partida/{{ partida._id }}/jugar/8"><button type="button" class="btn btn-secondary btn-lg" >{{ tablero[8] }}</button></td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/6">{{ tablero[6] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/7">{{ tablero[7] }}</td>
+      <td class="text-center"><a class="btn btn-secondary btn-block" href="/partida/{{ partida._id }}/jugar/8">{{ tablero[8] }}</td>
     </tr>
   </tbody>
 </table>
   {% if partida.ganador != '' %}
-    <b>Ganador: {{ partida.ganador }}</b>
+    <h5 class="bg-success"><b>Ganador de la partida:</b> {{ partida.ganador }}</h5>
   {% endif %}
+  <div class="container text-center mt-4">
+    <a class="btn btn-outline-secondary" href="/partidas">Ver todas las partidas</a>
+  </div>
 </div>
 {% endblock %}
