@@ -17,7 +17,15 @@ def get_partidas():
         p["_id"] = p["_id"]["$oid"]
     return render_template('partidas.html', partidas=partidas)
 
-
+@app.route('/partida/<id>')
+def get_partida(id):
+    r = requests.get('https://murmuring-forest-97474.herokuapp.com/partida/{}'.format(id))
+    #transformo a diccionario
+    partida = ast.literal_eval(r.text)
+    #piso id para tratar mas facil en template
+    partida["_id"] = partida["_id"]["$oid"]
+    tab = partida["tablero"].split(",")
+    return render_template('partida.html', partida=partida, tablero=tab)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Partida {{ partida._id }}</title>
+  </head>
+  <body>
+    <h2> Jugador: {{ partida.jugador }}</h2>
+    <h3> Fecha de creacion: {{ partida.add_date }}</h3>
+    <h3> Forma del jugador: {{ partida.forma }}</h3>
+    <table>
+      <h2>Tablero</h2>
+      <tr>
+        <td>{{ tablero[0] }}</td>
+        <td>{{ tablero[1] }}</td>
+        <td>{{ tablero[2] }}</td>
+      </tr>
+      <tr>
+        <td>{{ tablero[3] }}</td>
+        <td>{{ tablero[4] }}</td>
+        <td>{{ tablero[5] }}</td>
+      </tr>
+      <tr>
+        <td>{{ tablero[6] }}</td>
+        <td>{{ tablero[7] }}</td>
+        <td>{{ tablero[8] }}</td>
+      </tr>
+    </table>
+    {% if partida.ganador != '' %}
+      <b>Ganador: {{ partida.ganador }}</b>
+    {% endif %}
+
+  </body>
+</html>
