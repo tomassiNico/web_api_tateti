@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 import ast
 from bson import ObjectId
@@ -31,7 +31,7 @@ def get_partida(id):
 @app.route('/partida/<id>/jugar/<pos>')
 def jugar(id, pos):
     r = requests.get('https://murmuring-forest-97474.herokuapp.com/partida/{}/jugar/{}'.format(id, pos))
-    return redirect('/partda/{}'.format(id))
+    return redirect('/partida/{}'.format(id))
 
 @app.route('/crear_partida', methods=['GET','POST'])
 def crear_partida():
