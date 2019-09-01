@@ -11,7 +11,7 @@ def get_partidas():
     r = requests.get('https://murmuring-forest-97474.herokuapp.com/partidas')
     #transformo el resultado del request a lista para poder iterarlo en el template
     partidas = ast.literal_eval(r.text)
-    return render_template('index.html', partidas=partidas)
+    return render_template('partidas.html', partidas=partidas)
 
 
 if __name__ == '__main__':
