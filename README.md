@@ -17,7 +17,8 @@ Proyecto desplegado en Heroku
 
 1. Ingresa al link: https://frozen-wave-46424.herokuapp.com/
 2. Presiona en el boton "Nueva partida"
-3. Juga!
+3. Escribe tu nombre y selecciona con que forma quieres jugar (X o O)
+4. Juga!
 
 ### Historico de partidas
 
